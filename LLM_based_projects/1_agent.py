@@ -12,6 +12,7 @@ class AgentState(TypedDict):
     # messages_ai : List[AIMessage]
     
     messages : List[Union[HumanMessage, AIMessage]]
+    
     #Union - allows multiple datatypesw within a single key's value of typedDist
     #HumanMessages and AIMessages are different datatypes in langgraph 
 
@@ -28,6 +29,7 @@ def process(state: AgentState) -> AgentState:
     return state
 
 graph = StateGraph(AgentState)
+
 graph.add_node("process", process)
 graph.add_edge(START, "process")
 graph.add_edge("process", END)
